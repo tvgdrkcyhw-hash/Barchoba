@@ -94,7 +94,7 @@ const fetchWithRetries = async (url, options, retries = 5) => {
 };
 
 const callGemini = async (history, systemPrompt) => {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
   
   const formattedHistory = history.map(msg => ({
     role: msg.role === 'ai' ? 'model' : 'user',
@@ -116,7 +116,7 @@ const callGemini = async (history, systemPrompt) => {
 };
 
 const generateSecretWord = async (lang) => {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
   const prompt = `Generate a single random well-known object, animal, or profession in the language: ${lang}. Reply with ONLY the word or short phrase, absolutely no punctuation or other text.`;
   
   const payload = {
