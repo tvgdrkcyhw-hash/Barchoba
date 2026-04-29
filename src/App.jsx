@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // ==========================================
 // CONFIGURATION & API
 // ==========================================
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
 
 const TRANSLATIONS = {
   en: {
@@ -94,8 +94,7 @@ const fetchWithRetries = async (url, options, retries = 5) => {
 };
 
 const callGemini = async (history, systemPrompt) => {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-  
+  const url = `/api/chat`;
   const formattedHistory = history.map(msg => ({
     role: msg.role === 'ai' ? 'model' : 'user',
     parts: [{ text: msg.text }]
@@ -116,7 +115,7 @@ const callGemini = async (history, systemPrompt) => {
 };
 
 const generateSecretWord = async (lang) => {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const url = `/api/chat`;
   const prompt = `Generate a single random well-known object, animal, or profession in the language: ${lang}. Reply with ONLY the word or short phrase, absolutely no punctuation or other text.`;
   
   const payload = {
